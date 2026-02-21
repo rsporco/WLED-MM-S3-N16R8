@@ -8,37 +8,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1 — Checkout YOUR repo
       - name: Checkout this repo
         uses: actions/checkout@v4
 
-      # Step 2 — Checkout MoonModules/WLED-MM source into subfolder "wledmm"
       - name: Checkout WLED-MM source
         uses: actions/checkout@v4
         with:
           repository: MoonModules/WLED-MM
-          ref: master
+          ref: dev
           path: wledmm
 
-      # Step 3 — Copy your custom config files into the WLED-MM source tree
       - name: Apply custom config
         run: |
           cp platformio.ini wledmm/platformio.ini
           cp sdkconfig.defaults wledmm/sdkconfig.defaults
 
-      # Step 4 — Install PlatformIO
       - name: Install PlatformIO
         run: pip install platformio
 
-      # Step 5 — Build the firmware
       - name: Build firmware
         run: |
           cd wledmm
           pio run -e esp32s3_devkitc1_n16r8
 
-      # Step 6 — Upload the compiled firmware as an artifact
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: firmware-esp32s3_devkitc1_n16r8
           path: wledmm/.pio/build/esp32s3_devkitc1_n16r8/firmware.bin
+
+
