@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: MoonModules/WLED-MM
-          ref: main
+          ref: master
           path: wledmm
 
       # Step 3 — Copy your custom config files into the WLED-MM source tree
