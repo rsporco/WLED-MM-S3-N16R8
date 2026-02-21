@@ -1,0 +1,33 @@
+name: Build WLED-MM S3 N16R8
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout WLED-MM source
+        uses: actions/checkout@v4
+        with:
+          repository: MoonModules/WLED-MM
+          ref: main
+
+      - name: Copy custom config
+        run: |
+          cp ${{ github.workspace }}/../platformio.ini ./platformio.ini
+          cp ${{ github.workspace }}/../sdkconfig.defaults ./sdkconfig.defaults
+
+      - name: Install PlatformIO
+        run: pip install platformio
+
+      - name: Build firmware
+        run: pio run -e esp32s3_devkitc1_n16r8
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        
+        with:
+          name: firmware-esp32s3_devkitc1_n16r8
+          path: .pio/build/esp32s3_devkitc1_n16r8/firmware.bin
