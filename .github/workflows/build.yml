@@ -1,4 +1,4 @@
-name: Build WLED-MM S3 N16R8
+vname: Build WLED-MM S3 N16R8
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: MoonModules/WLED-MM
-          ref: master
+          ref: Dev
           path: wledmm
           clean: false
 
