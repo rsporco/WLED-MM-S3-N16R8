@@ -18,6 +18,7 @@ jobs:
           ref: Dev
           path: wledmm
           clean: false
+          fetch-depth: 0
 
       - name: Apply custom config
         run: |
