@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1 — Checkout YOUR repo (to access platformio.ini + sdkconfig.defaults)
+      # Step 1 — Checkout YOUR repo
       - name: Checkout this repo
         uses: actions/checkout@v4
 
@@ -42,4 +42,3 @@ jobs:
         with:
           name: firmware-esp32s3_devkitc1_n16r8
           path: wledmm/.pio/build/esp32s3_devkitc1_n16r8/firmware.bin
-
