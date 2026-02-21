@@ -15,8 +15,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: MoonModules/WLED-MM
-          ref: dev
+          ref: master
           path: wledmm
+          clean: false
 
       - name: Apply custom config
         run: |
@@ -36,5 +37,6 @@ jobs:
         with:
           name: firmware-esp32s3_devkitc1_n16r8
           path: wledmm/.pio/build/esp32s3_devkitc1_n16r8/firmware.bin
+
 
 
