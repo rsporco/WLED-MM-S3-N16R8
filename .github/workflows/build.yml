@@ -14,11 +14,12 @@ jobs:
       - name: Checkout WLED-MM source
         uses: actions/checkout@v4
         with:
-          repository: MoonModules/WLED-MM
-          ref: main
-          path: wledmm
-          clean: false
-          fetch-depth: 0
+            repository: MoonModules/WLED-MM
+            ref: main
+            path: wledmm
+            clean: false
+            fetch-depth: 0
+            token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Apply custom config
         run: |
