@@ -8,18 +8,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout WLED-MM
+      - name: Checkout this repo
         uses: actions/checkout@v4
 
       - name: Checkout WLED-MM source
         uses: actions/checkout@v4
         with:
-            repository: MoonModules/WLED-MM
-            ref: mdev
-            path: wledmm
-            clean: false
-            fetch-depth: 0
-            token: ${{ secrets.GITHUB_TOKEN }}
+          repository: MoonModules/WLED-MM
+          ref: mdev
+          path: wledmm
+          clean: false
+          fetch-depth: 0
 
       - name: Apply custom config
         run: |
