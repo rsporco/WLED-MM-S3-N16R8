@@ -20,21 +20,16 @@ jobs:
           clean: false
           fetch-depth: 0
 
-      - name: Apply custom config
-        run: |
-          cp platformio.ini wledmm/platformio.ini
-          cp sdkconfig.defaults wledmm/sdkconfig.defaults
-
       - name: Install PlatformIO
         run: pip install platformio
 
       - name: Build firmware
         run: |
-          cd wledmm
+          cd wledmm/wled00
           pio run -e esp32s3_devkitc1_n16r8
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: firmware-esp32s3_devkitc1_n16r8
-          path: wledmm/.pio/build/esp32s3_devkitc1_n16r8/firmware.bin
+          path: wledmm/wled00/.pio/build/esp32s3_devkitc1_n16r8/firmware.bin
