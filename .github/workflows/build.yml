@@ -24,8 +24,8 @@ jobs:
 
       - name: Build firmware
         run: |
-          cd wledmm
-          pio run -e esp32S3_8MB_PSRAM_M_qspi
+         cd wledmm
+         pio run -e esp32s3_n16r8_full
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
