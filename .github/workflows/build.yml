@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout this repo
+      - name: Checkout WLED-MM
         uses: actions/checkout@v4
 
       - name: Checkout WLED-MM source
