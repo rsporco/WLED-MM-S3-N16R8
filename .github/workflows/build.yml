@@ -17,7 +17,6 @@ jobs:
           repository: MoonModules/WLED-MM
           ref: mdev
           path: wledmm
-          clean: false
           fetch-depth: 0
 
       - name: Install PlatformIO
@@ -26,10 +25,10 @@ jobs:
       - name: Build firmware
         run: |
           cd wledmm
-          pio run -e esp32s3_devkitc1_n16r8
+          pio run -e esp32S3_8MB_PSRAM_M_qspi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: firmware-esp32s3_devkitc1_n16r8
-          path: wledmm/.pio/build/esp32s3_devkitc1_n16r8/firmware.bin
+          name: firmware-esp32S3_8MB_PSRAM_M_qspi
+          path: wledmm/.pio/build/esp32S3_8MB_PSRAM_M_qspi/firmware.bin
