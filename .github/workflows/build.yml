@@ -1,34 +1,47 @@
-name: Build WLED-MM S3 N16R8
+name: Build WLED-MM for ESP32-S3-WROOM-1-N16NB
 
 on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      PIO_ENV: esp32s3_wroom_1_n16nb
+
     steps:
-      - name: Checkout this repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Checkout WLED-MM source
-        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          repository: MoonModules/WLED-MM
-          ref: mdev
-          path: wledmm
-          fetch-depth: 0
+          python-version: '3.11'
 
       - name: Install PlatformIO
-        run: pip install platformio
+        run: |
+          pip install --upgrade pip
+          pip install platformio
+
+      - name: Show PlatformIO version
+        run: pio --version
 
       - name: Build firmware
         run: |
-         cd wledmm
-         pio run -e esp32s3_n16r8_full
+          pio run -e ${PIO_ENV}
+
+      - name: Collect firmware binary
+        run: |
+          mkdir -p artifacts
+          cp .pio/build/${PIO_ENV}/firmware.bin artifacts/WLED-MM-ESP32S3-WROOM-1-N16NB.bin
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: firmware-esp32S3_8MB_PSRAM_M_qspi
-          path: wledmm/.pio/build/esp32S3_8MB_PSRAM_M_qspi/firmware.bin
+          name: WLED-MM-ESP32S3-WROOM-1-N16NB
+          path: artifacts/WLED-MM-ESP32S3-WROOM-1-N16NB.bin
